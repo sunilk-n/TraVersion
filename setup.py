@@ -9,7 +9,7 @@ with open(initFile) as fd:
     exec(fd.read())
     version = __version__
 
-with open("README.md") as fd:
+with open("README.md", encoding="utf-8") as fd:
     readmeData = fd.read()
 
 with open("LICENSE") as fd:
@@ -22,7 +22,8 @@ setup(
     packages=[
         packageName,
     ],
-    license=licenseData,
+    license="GNU GENERAL PUBLIC LICENSE",
+    long_description_content_type='text/markdown',
     long_description=readmeData,
     author="Sunil Kumar Nerella",
     author_email="sunil.nerella39@gmail.com",
