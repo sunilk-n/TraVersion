@@ -1,10 +1,7 @@
 # TraVersion
 TraVersion is similar way of maintaining semantic versioning in python, where the major points are introduced in this repository.
 
-####Note:
-The word TraVersion is taken from Traverse which means  "to go or travel across or over"
-
-###Usage Example:
+**Usage Example:**
 * Default version
     ``` python
     from traVer import Version
@@ -22,3 +19,10 @@ The word TraVersion is taken from Traverse which means  "to go or travel across 
   print(version.major) >>> 2
   print(version.patch) >>> 4
   ```
+**Note:**
+
+   Anyone interested to contribute code or give some ideas to improve the versions to this repository are most welcome. 
+    
+**Do you know?**
+    
+   > _The word TraVersion is taken from Traverse which means  "to go or travel across or over"_
