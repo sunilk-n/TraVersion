@@ -22,11 +22,11 @@ class Version(object):
             KwArgs:
                 version (str): Version string to parse.(Default: "1.0.0")
         """
-        self.version = version or "1.0.0"
+        self._version = None
         self.major = self.minor = self.patch = self.preRelName = self.preRelease = None
         self._acceptedPreRelNames = ['alpha', 'beta', 'rc']
 
-        self._parse_version()
+        self.version = version or "1.0.0"
 
     def __str__(self):
         """ Override function to return the version string object
@@ -45,6 +45,15 @@ class Version(object):
                 minor=self.minor,
                 patch=self.patch,
             )
+
+    @property
+    def version(self):
+        return self._version
+
+    @version.setter
+    def version(self, ver):
+        self._version = ver
+        self._parse_version()
 
     @property
     def is_pre_version(self):
@@ -104,6 +113,31 @@ class Version(object):
                     "Release version must be of type integer, not string"
                 )
         return result
+
+    @property
+    def version_info(self):
+        version_dict = SemVersion(
+            self.major, self.minor, self.patch,
+            releaselevel=self.preRelName, serial=self.preRelease
+        )
+        return version_dict
+
+
+class SemVersion(object):
+    def __init__(self, major, minor, patch, releaselevel=None, serial=None):
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.releaselevel = releaselevel or ""
+        self.serial = serial or 0
+
+    def __repr__(self):
+        repr_str = "version_info(major={major}, minor={minor}, patch={patch}, " \
+               "releaselevel='{releaselevel}', serial={serial})".format(
+            major=self.major, minor=self.minor, patch=self.patch,
+            releaselevel=self.releaselevel, serial=self.serial
+        )
+        return repr_str
 
 
 if __name__ == '__main__':
